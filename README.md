@@ -15,16 +15,15 @@ Prerequisites:
 - libdragon toolchain installed
 - `N64_INST` set to your libdragon install path
 
-Build ROMs:
+Build ROM:
 
 ```sh
 make
 ```
 
-This builds:
+This builds a single combined ROM:
 
-- `savemgr_4k.z64` (EEPROM 4K save type)
-- `savemgr_16k.z64` (EEPROM 16K save type)
+- `savemgr.z64` (auto-detects EEPROM 4K or 16K at runtime)
 
 ## Controls
 
