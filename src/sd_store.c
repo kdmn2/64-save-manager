@@ -58,7 +58,7 @@ bool sd_store_save_blob(const save_blob_t *blob, char *out_path, size_t out_path
     hdr.port = blob->port;
     hdr.payload_size = (uint32_t)blob->size;
     hdr.checksum = fnv1a32(blob->data, blob->size);
-    strncpy(hdr.name, blob->name, sizeof(hdr.name) - 1);
+    memcpy(hdr.name, blob->name, sizeof(hdr.name));
 
     bool ok = fwrite(&hdr, 1, sizeof(hdr), fp) == sizeof(hdr);
     ok = ok && fwrite(blob->data, 1, blob->size, fp) == blob->size;
@@ -111,6 +111,6 @@ bool sd_store_load_blob(const char *path, save_blob_t *out_blob)
     out_blob->port = hdr.port;
     out_blob->data = payload;
     out_blob->size = hdr.payload_size;
-    strncpy(out_blob->name, hdr.name, sizeof(out_blob->name) - 1);
+    memcpy(out_blob->name, hdr.name, sizeof(out_blob->name));
     return true;
 }

@@ -18,7 +18,7 @@ typedef enum {
 typedef struct {
     bool sd_ready;
     bool eeprom_ready;
-    uint8_t eeprom_blocks;
+    size_t eeprom_blocks;
     bool cpak_ready[4];
 } app_context_t;
 
